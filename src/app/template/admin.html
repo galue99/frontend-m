@@ -1,0 +1,165 @@
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse" >
+  <!-- BEGIN TOP NAVIGATION BAR -->
+  <div class="navbar-inner" data-ng-cloak>
+    <div class="header-seperation">
+      <ul class="nav pull-left notifcation-center visible-xs visible-sm">
+        <li class="dropdown">
+          <a href="main-menu" data-webarch="toggle-left-side">
+            <i class="material-icons">menu</i>
+          </a>
+        </li>
+      </ul>
+      <!-- BEGIN LOGO -->
+      <a>
+        <img src="assets/images/360.png" class="logo" alt="" data-src="assets/images/360.png" data-src-retina="assets/images/360.png" width="157" height="45" />
+      </a>
+      <!-- END LOGO -->
+      <ul class="nav pull-right notifcation-center">
+        <li class="dropdown hidden-xs hidden-sm">
+          <a ui-sref="home.home" class="dropdown-toggle active" data-toggle="">
+            <i class="material-icons">home</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <div class="header-quick-nav">
+      <!-- BEGIN TOP NAVIGATION MENU -->
+      <div class="pull-left">
+        <ul class="nav quick-section">
+          <li class="quicklinks">
+            <a role="button" class="" id="layout-condensed-toggle">
+              <i class="material-icons">menu</i>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav quick-section">
+          <li class="quicklinks  m-r-10">
+            <a href="" class="" role="button" data-ng-click="refresh()">
+              <i class="material-icons">refresh</i>
+            </a>
+          </li>
+          <li class="quicklinks"> <span class="h-seperate"></span></li>
+        </ul>
+      </div>
+
+      <!-- END TOP NAVIGATION MENU -->
+      <!-- BEGIN CHAT TOGGLER -->
+      <div class="pull-right">
+        <div class="chat-toggler sm">
+          <div class="profile-pic">
+            <img src="assets/img/profiles/avatar_small.jpg" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35" />
+            <div class="availability-bubble online"></div>
+          </div>
+        </div>
+        <ul class="nav quick-section ">
+          <li class="quicklinks">
+            <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="" id="user-options">
+              <i class="material-icons">tune</i>
+            </a>
+            <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+<!--              <li>
+                <a href="user-profile.html"> My Account</a>
+              </li>
+              <li>
+                <a href="calender.html">My Calendar</a>
+              </li>
+              <li>
+                <a href="email.html"> My Inbox&nbsp;&nbsp;
+                  <span class="badge badge-important animated bounceIn">2</span>
+                </a>
+              </li>-->
+              <li class="divider"></li>
+              <li>
+                <a href="" data-ng-click="salir()"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+      <!-- END CHAT TOGGLER -->
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+  </div>
+  <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div>
+  <div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar " id="main-menu">
+      <!-- BEGIN MINI-PROFILE -->
+      <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
+        <div class="user-info-wrapper sm">
+          <div class="profile-wrapper sm">
+            <img src="assets/img/profiles/avatar.jpg" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" width="69" height="69" />
+            <div class="availability-bubble online"></div>
+          </div>
+          <div class="user-info sm">
+            <div class="username">{{user.first_name | uppercase}} <br><span class="semi-bold" style="font-size: 13px;">{{user.last_name | uppercase}}</span></div>
+            <div class="status"></div>
+          </div>
+        </div>
+        <!-- END MINI-PROFILE -->
+        <!-- BEGIN SIDEBAR MENU -->
+        <p class="menu-title sm">BROWSE <span class="pull-right"><a href="" data-ng-click="refresh()"><i class="material-icons">refresh</i></a></span></p>
+        <ul>
+          <li>
+            <a href=""> <i class="material-icons">supervisor_account</i> <span class="title">Usuarios</span> <span class=" arrow"></span> </a>
+            <ul class="sub-menu">
+              <li> <a ui-sref="home.users">Crear Usuarios </a> </li>
+            </ul>
+          </li>
+          <li>
+            <a href=""> <i class="material-icons">assignment</i> <span class="title">Encuestas</span> <span class=" arrow"></span> </a>
+            <ul class="sub-menu">
+              <li> <a ui-sref="home.polls">Administración de Encuesta </a> </li>
+              <li> <a ui-sref="home.pollsView">Ver Encuestas Realizadas </a> </li>
+            </ul>
+          </li>
+          <li>
+            <a href=""> <i class="material-icons">domain</i> <span class="title">Empresas</span> <span class=" arrow"></span> </a>
+            <ul class="sub-menu">
+              <li> <a ui-sref="home.companys">Crear Empresas </a> </li>
+            </ul>
+          </li>
+          <li>
+            <a href=""> <i class="material-icons">assessment</i> <span class="title">Competencias</span> <span class=" arrow"></span> </a>
+            <ul class="sub-menu">
+              <li> <a ui-sref="home.competitions">Crear Competencias </a> </li>
+            </ul>
+          </li>
+          <li>
+            <a href=""> <i class="material-icons">assessment</i> <span class="title">Comportamientos</span> <span class=" arrow"></span> </a>
+            <ul class="sub-menu">
+              <li> <a ui-sref="home.behaviors">Comportamientos </a> </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+        <!-- END SIDEBAR MENU -->
+      </div>
+    </div>
+    <a href="" class="scrollup">Scroll</a>
+    <div class="footer-widget">
+      <div class="progress transparent progress-small no-radius no-margin">
+        <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
+      </div>
+      <div class="pull-right">
+        <div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>
+        <a data-ng-click="salir()" role="button"><i class="material-icons">power_settings_new</i></a></div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content">
+
+      <div ui-view></div>
+
+    </div>
+
+
+  </div>
+</div>
+

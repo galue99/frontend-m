@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row login-container ">
+    <div class="col-md-12">
+      <div style="max-width: 400px;margin: auto;">
+        <form name="userForm" ng-submit="login.submitForm(userForm)" ng-validate="validationOptions">
+<!--             <div class="liner-login">
+            </div> -->
+          <img src="assets/img/Logotipo-Mejorar.png" width="98%" class="l-login">
+
+          <div class="background-login">
+              <div class="title-login">
+                <h2 style="color: white">
+                Iniciar sesión
+                </h2>
+                <hr class="separation">
+              </div>
+              <div class="">
+                <div class="form-group">
+                  <label class="form-label" style="color: white">Usuario</label>
+                  <input type="text" class="form-control" id="txtusername" name="username" data-ng-model="username" required>
+                </div>
+              </div>
+              <div class="">
+                <div class="form-group">
+                  <label class="form-label" style="color: white">Contraseña</label> <span class="help"></span>
+                  <input type="password" class="form-control" id="txtpassword" name="password" data-ng-model="password" ng-enter="login.submitForm(userForm)" required>
+                </div>
+              </div>
+              <div class="">
+                <div class="control-group col-md-12">
+                  <div class="checkbox checkbox check-success text-center">
+                    <input id="checkbox1" type="checkbox" name="remember" data-ng-click="rememberMe()" data-ng-model="remember">
+                    <label for="checkbox1" class="t-che-login">Recordar Contraseña</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-login btn-cons pull-right" data-ng-disabled="userForm.$invalid" type="submit">Login</button>
+                </div>
+                <div class="col-md-12">
+                  <p style="color:white"><b>Nota: </b>Recuerde eliminar los espacios en blanco.</p>
+                </div>
+
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

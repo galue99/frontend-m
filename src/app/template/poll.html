@@ -1,0 +1,65 @@
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse" >
+  <!-- BEGIN TOP NAVIGATION BAR -->
+  <div class="navbar-inner" data-ng-cloak>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <div class="header-quick-nav">
+      <!-- BEGIN TOP NAVIGATION MENU -->
+
+      <!-- END TOP NAVIGATION MENU -->
+      <!-- BEGIN CHAT TOGGLER -->
+      <div class="pull-right">
+        <div class="chat-toggler sm">
+          <div class="profile-pic">
+            <img src="assets/img/profiles/avatar_small.jpg" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="35" height="35" />
+            <div class="availability-bubble online"></div>
+          </div>
+        </div>
+        <ul class="nav quick-section ">
+          <li class="quicklinks">
+            <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="" id="user-options">
+              <i class="material-icons">tune</i>
+            </a>
+            <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+              <!--              <li>
+                              <a href="user-profile.html"> My Account</a>
+                            </li>
+                            <li>
+                              <a href="calender.html">My Calendar</a>
+                            </li>
+                            <li>
+                              <a href="email.html"> My Inbox&nbsp;&nbsp;
+                                <span class="badge badge-important animated bounceIn">2</span>
+                              </a>
+                            </li>-->
+              <li class="divider"></li>
+              <li>
+                <a href="" data-ng-click="salir()"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+      <!-- END CHAT TOGGLER -->
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+  </div>
+  <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div>
+  <div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <a href="" class="scrollup">Scroll</a>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content condensed">
+
+      <div ui-view></div>
+
+    </div>
+
+
+  </div>
+</div>

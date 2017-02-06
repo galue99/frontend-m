@@ -1,0 +1,160 @@
+<div id="portlet-config" class="modal hide">
+  <div class="modal-header">
+    <button data-dismiss="modal" class="close" type="button"></button>
+    <h3>Widget Settings</h3>
+  </div>
+  <div class="modal-body"> Widget settings form goes here </div>
+</div>
+<div class="clearfix"></div>
+<div class="content">
+  <ul class="breadcrumb">
+    <li>
+      <p>Home</p>
+    </li>
+    <li><a class="active">Encuestas</a> </li>
+  </ul>
+
+  <div class="page-title"><a ui-sref="home.home"><i class="icon-custom-left"></i></a>
+    <h3>Lista de - <span class="semi-bold">Preguntas y Respuestas</span></h3>
+  </div>
+  <div class="row">
+
+  </div>
+  <br>
+  <div class="row-fluid" ng-show="!show">
+    <div class="span12">
+      <div class="grid simple ">
+        <div class="grid-title">
+          <h4>Lista de <span class="semi-bold">Preguntas y Respuestas</span></h4>
+          <!--<button class="btn btn-primary pull-right" data-ng-click="createPoll()"  style="margin-right: 4px;" title="Debe seleccionar una empresa previamente"><i class="glyphicon glyphicon-th-list"></i> Crear Encuesta </button>-->
+
+        </div>
+        <div class="grid-body" id="">
+          <div class="table-responsive">
+            <table datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th style="" class="text-center">ID</th>
+                <th style="" class="text-center">Nombre de la encuesta</th>
+                <!--<th style="" class="text-center">Estado</th>-->
+                <th style="" class="text-center">Evaluador</th>
+                <th style="" class="text-center" data-hide="phone,tablet">Email</th>
+                <th style="" class="text-center">Cargo</th>
+                <th style="" class="text-center">Ver Respuesta</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="poll in polls | orderBy:'phrase_id'">
+                <td class="text-center">{{$index+1}}</td>
+                <td class="text-center">{{poll.name}}</td>
+                <!--<td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="changeStatus(poll)">Administrar</button>
+                </td>-->
+                <td class="text-center">
+                  {{poll.firstname}} {{poll.lastname}}
+                </td>
+                <td class="text-center">
+                  {{poll.email}}
+                </td>
+                <td class="text-center">
+                  {{poll.position}}
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-success" ng-click="showAnswer(poll)">Ver Respuesta</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row-fluid" ng-show="show">
+    <div class="span12">
+      <div class="grid simple ">
+        <div class="grid-title">
+          <h4>Lista de <span class="semi-bold">Encuestas</span></h4>
+          <button class="btn btn-primary pull-right" data-ng-click="backFunction()"  style="margin-right: 4px;" title=""><i class="glyphicon glyphicon-arrow-left"></i> Ir Atras </button>
+
+        </div>
+        <div class="grid-body" id="">
+          <div class="table-responsive">
+            <table class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th style="" class="text-center">ID</th>
+                <th style="" class="text-center">Pregunta</th>
+                <!--<th style="" class="text-center">Estado</th>-->
+                <th style="" class="text-center">Respuesta</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="answer in answers">
+                <td class="text-center">{{$index+1}}</td>
+                <td class="text-center">{{answer.pregunta}}</td>
+                <!--<td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="changeStatus(poll)">Administrar</button>
+                </td>-->
+                <td class="text-center">
+                  {{answer.respuesta}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <br><br>
+          <h3>Preguntas Adicionales</h3>
+          <div class="table-responsive table-overflow">
+            <table class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th style="" class="text-center">ID</th>
+                <th style="" class="text-center">Pregunta</th>
+                <!--<th style="" class="text-center">Estado</th>-->
+                <th style="" class="text-center">Respuesta</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="other in other_question">
+                <td class="text-center">{{$index+1}}</td>
+                <td class="text-center">{{other.question}}</td>
+                <!--<td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="changeStatus(poll)">Administrar</button>
+                </td>-->
+                <td class="text-center">
+                  {{other.answers}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<!-- BEGIN JS DEPENDECENCIES-->

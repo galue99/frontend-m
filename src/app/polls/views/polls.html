@@ -1,0 +1,452 @@
+<div id="portlet-config" class="modal hide">
+  <div class="modal-header">
+    <button data-dismiss="modal" class="close" type="button"></button>
+    <h3>Widget Settings</h3>
+  </div>
+  <div class="modal-body"> Widget settings form goes here </div>
+</div>
+<div class="clearfix"></div>
+<div class="content">
+  <ul class="breadcrumb">
+    <li>
+      <p>Home</p>
+    </li>
+    <li><a class="active">Encuestas</a> </li>
+  </ul>
+
+  <div class="page-title"><a ui-sref="home.home"><i class="icon-custom-left"></i></a>
+    <h3>Lista de - <span class="semi-bold">Encuestas</span></h3>
+  </div>
+  <div class="row">
+
+  </div>
+  <br>
+  <div class="row-fluid" data-ng-show="show">
+    <div class="span12">
+      <div class="grid simple ">
+        <div class="grid-title">
+          <h4>Lista de <span class="semi-bold">Encuestas</span></h4>
+          <!--<button class="btn btn-primary pull-right" data-ng-click="createPoll()"  style="margin-right: 4px;" title="Debe seleccionar una empresa previamente"><i class="glyphicon glyphicon-th-list"></i> Crear Encuesta </button>-->
+
+        </div>
+        <div class="grid-body" id="">
+          <div class="table-responsive">
+            <table datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th style="" class="text-center">ID</th>
+                <th style="" class="text-center">Nombre</th>
+                <!--<th style="" class="text-center">Estado</th>-->
+                <th style="" class="text-center">Asignaciones</th>
+                <th style="" class="text-center" data-hide="phone,tablet">Preguntas Adicionales</th>
+                <th style="" class="text-center">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="poll in polls">
+                <td class="text-center">{{$index+1}}</td>
+                <td class="text-center">{{poll.name}}</td>
+                <!--<td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="changeStatus(poll)">Administrar</button>
+                </td>-->
+                <td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="addAssign(poll)">Administrar</button>
+                </td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-success btn-mini" data-ng-click="addQuestion(poll)">Administrar</button>
+                </td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-primary btn-mini" data-ng-click="showPoll(poll)" title="Ver Evaluación"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-danger btn-mini" data-ng-click="deletePoll(poll)" title="Eliminar Evaluación"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid" data-ng-show="!show">
+    <div class="span12">
+      <div class="grid simple ">
+        <div class="grid-title">
+          <h4>Asignación de <span class="semi-bold">Usuarios a la Evaluación {{poll.name}}</span></h4>
+          <button class="btn btn-primary pull-right" data-ng-click="addEvaluadores(poll)"  style="margin-right: 4px;" title="Debe seleccionar una empresa previamente"><i class="glyphicon glyphicon-th-list"></i> Asignar Usuarios a la Encuesta </button>
+
+        </div>
+        <div class="grid-body">
+          <div class="table-responsive">
+            <table datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th style="" class="text-center">ID</th>
+                <th style="" class="text-center">Nombre del evaluado</th>
+                <th style="" class="text-center">Cargo</th>
+                <th style="" class="text-center">Email</th>
+                <th style="" class="text-center">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="user in users" role="button">
+                <td class="text-center" data-ng-click="openModalEvaluadores(user, users.evaluadores)" title="Haz click para er la lista de Evaluadores">{{$index+1}}</td>
+                <td class="text-center" data-ng-click="openModalEvaluadores(user, users.evaluadores)" title="Haz click para er la lista de Evaluadores">{{user.firstname}} {{user.lastname}}</td>
+                <td class="text-center" data-ng-click="openModalEvaluadores(user, users.evaluadores)" title="Haz click para er la lista de Evaluadores">{{user.position}}</td>
+                <td class="text-center" data-ng-click="openModalEvaluadores(user, users.evaluadores)" title="Haz click para er la lista de Evaluadores">{{user.email}}</td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-danger btn-mini" title="Eliminar Usuario" data-ng-click="deleteUser(user)"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-success btn-mini" title="Informe para el gerente" data-ng-click="printReport(user, poll.id)"><i class="glyphicon glyphicon-save-file" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-success btn-mini" title="Informe" data-ng-click="printReport1(user, poll.id)"><i class="glyphicon glyphicon-save-file" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <br>
+          <button class="btn btn-danger pull-right" data-ng-click="addAssign(poll)" style="margin-right: 4px;"><i class="glyphicon glyphicon-arrow-left"></i> Ir Atras</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+
+<script type="text/ng-template" id="myModalContent.html">
+  <form name="simpleform" ng-submit="ok()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 class="semi-bold">Crear Nueva Competencia</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row form-row">
+        <div class="col-md-6">
+          <input type="text" name="name" data-ng-model="competition.name" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="col-md-6">
+          <select ng-options="item.id as item.name for item in competitionsType" name="type" class="form-control" data-ng-model="competition.type_id" style="width:100%" required></select>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="col-md-12">
+          <textarea name="description" data-ng-model="competition.description" class="form-control" placeholder="Description" required>
+
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary btn-sm btn-small" ng-disabled="simpleform.$invalid">
+        Enviar
+      </button>
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+<!-- Edit User Modal -->
+<script type="text/ng-template" id="myModalUserEdit.html">
+  <form name="simpleform" ng-submit="ok(picFile)" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="" class="semi-bold">Editar Competencia</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row form-row">
+        <div class="col-md-6">
+          <input type="text" name="name" data-ng-model="competition.name" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="col-md-6">
+          <select ng-options="item.id as item.name for item in competitionsType" name="type" class="form-control" data-ng-model="competition.type_id" style="width:100%" required></select>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="col-md-12">
+          <textarea name="description" data-ng-model="competition.description" class="form-control" placeholder="Description" required>
+
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary btn-sm btn-small" ng-disabled="simpleform.$invalid">
+        Enviar
+      </button>
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalContentMejorar.html">
+  <form name="simpleform" ng-submit="saveMejorar()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Agregar Competencia</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive table-overflow">
+        <table class="table">
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+          <tr data-ng-repeat="competition in CompetitionsMejorar">
+            <td>{{competition.name}}</td>
+            <td>{{competition.description}}</td>
+            <td>{{competition.type_name}}</td>
+            <td><button class="btn btn-primary btn-sm" ng-click="agregarMejorar(competition)"><i class="glyphicon glyphicon-plus-sign"></i> Agregar</button> </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalCreatePoll.html">
+  <form name="simpleform" ng-submit="createPollMejorar()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Crear Encuesta</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row form-row">
+        <div class="col-md-6">
+          <input type="text" name="name" data-ng-model="competition.name" class="form-control" placeholder="Nombre" required>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary btn-sm btn-small" ng-disabled="simpleform.$invalid">
+        Enviar
+      </button>
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalPoll.html">
+  <form name="simpleform" ng-submit="createPollMejorar()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Ver Encuesta</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-12" ng-repeat="item in poll.items" ng-cloak>
+          <strong class=""><h3 style="color:#0078b5!important;">{{$index+1}}.- Competencia: {{item.name}}</h3></strong><br>
+          <div class="col-sm-6">
+            <div class="form-group" ng-repeat="phrase in item.phrases" ng-cloak>
+              <label for="">{{$index+1}}.- {{phrase.name}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalCreateQuestion.html">
+  <form name="simpleform" ng-submit="createPollMejorar()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Administrar Preguntas Adicionales</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row form-row">
+        <div class="col-md-6">
+          <input type="text" name="name" data-ng-model="question" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary btn-sm btn-small" data-ng-click="ok()" ng-disabled="simpleform.$invalid">Enviar</button>
+          <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="">Cancelar</button>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="table-responsive col-md-12 table-overflow">
+          <table class="table" datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>Pregunta</th>
+              <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="question in questions">
+              <td>{{$index + 1}}</td>
+              <td>{{question.question}}</td>
+              <td>
+                <button type="button" class="btn btn-danger btn-mini" data-ng-click="deleteQuestion(question)" title="Eliminar Pregunta Adicional"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cerrar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalEvaluadores.html">
+  <form name="simpleform" ng-submit="createPollMejorar()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Usuarios Evaluadores</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <div class="row form-row">
+        <div class="table-responsive col-md-12 table-overflow">
+          <table class="table" datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+            <thead>
+            <tr>
+              <th class="text-center">Id</th>
+              <th class="text-center">Nombre</th>
+              <th class="text-center">Rol</th>
+              <th class="text-center">Cargo</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Evaluo</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="evaluador in userList">
+              <td class="text-center">{{$index + 1}}</td>
+              <td class="text-center">{{evaluador.firstname}} {{evaluador.lastname}}</td>
+              <td class="text-center">{{evaluador.nivel}}</td>
+              <td class="text-center">{{evaluador.position}}</td>
+              <td class="text-center">{{evaluador.email}}</td>
+              <td class="text-center">
+                <i ng-if="evaluador.status == '0' " class="glyphicon glyphicon-remove" aria-hidden="true" style="color: red"></i>
+                <i ng-if="evaluador.status == '1' " class="glyphicon glyphicon-check" aria-hidden="true" style="color: green"></i>
+              </td>
+              <td class="text-center">
+                <button type="button" class="btn btn-danger btn-mini" data-ng-click="deleteEvaluador(evaluador)" title="Eliminar Pregunta Adicional"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cerrar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+<!-- Competencias Mejorar Modal -->
+<script type="text/ng-template" id="myModalAddEvaluadores.html">
+  <form name="simpleform" ng-submit="ok()" ng-validate="validationOptions" >
+    <div class="modal-header">
+      <br>
+      <i class="fa fa-user fa-7x"></i>
+      <h3 id="myModalLabel" class="semi-bold">Asignar Usuarios a la Evaluación</h3>
+      <p class="no-margin">&nbsp; </p>
+    </div>
+    <div class="modal-body">
+      <form name="userAssign" class="form row" novalidate>
+        <div class="row form-row">
+          <div class="col-md-4">
+            <label for="">Seleccione una Empresa: </label>
+            <select ng-options="item.id as item.name for item in companys" name="company" class="form-control" data-ng-model="company" ng-change="allUserCompany(company)" style="width:100%" required></select>
+          </div>
+          <div class="col-md-4">
+            <label for="">Seleccione un Usuario a Evaluar: </label>
+            <select ng-options="item.id as item.firstname + ' ' + item.lastname for item in users" name="evaluado" class="form-control" data-ng-model="user" style="width:100%" data-ng-change="changeUser(user)" required></select>
+          </div>
+          <div class="col-md-4">
+            <label for="">Seleccione un Nivel </label>
+            <select ng-options="item.id as item.name for item in levels" name="levels" class="form-control" data-ng-model="nivel" style="width:100%" data-ng-change="levelSelect(nivel)" required></select>
+          </div>
+        </div>
+        <div class="row form-row" data-ng-show="show1">
+          <div class="table-responsive col-md-12 table-overflow">
+            <table class="table" datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nombre del Evaluador</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr data-ng-repeat="user in usersNew">
+                <td>{{$index + 1}}</td>
+                <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>
+                  <input name="{{user.firstname}}"
+                         data-ng-model="check"
+                         data-ng-value="user.id"
+                         type="checkbox" data-ng-click="userSelect(user)" >
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm btn-small" ng-disabled="simpleform.$invalid">Asignar</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+
+
+      <button class="btn btn-danger btn-sm btn-small"  type="button" ng-click="cancel()">Cerrar</button>
+    </div>
+  </form>
+</script>
+<!-- End Modal -->
+
+
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<!-- BEGIN JS DEPENDECENCIES-->
