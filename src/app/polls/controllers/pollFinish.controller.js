@@ -17,12 +17,12 @@
     $scope.polls = {};
     $scope.show = false;
 
+    $(".fakeloader").show();
+
     QuestionsService.pollFinish()
       .then(function(response){
-        console.log(response);
         $scope.polls = response.data;
-        console.log($scope.polls);
-
+        $(".fakeloader").fadeOut();
       }, function (err) {
 
       });
@@ -30,13 +30,17 @@
 
 
     $scope.showAnswer = function (poll) {
+      $(".fakeloader").show();
+
       QuestionsService.pollAnswer(poll.id)
         .then(function(response){
           $scope.answers = response.data.answers;
           $scope.other_question = response.data.other_question;
-          console.log(response.data);
+          $(".fakeloader").fadeOut();
           $scope.show = true;
 
+        }, function(err){
+           $(".fakeloader").fadeOut();
         })
     };
 

@@ -30,7 +30,7 @@
     $scope.countItems = 1;
     $scope.countPhrases = 1;
 
-    //$(".fakeloader").show();
+    $(".fakeloader").show();
 
 
     //Datos del Usuario Logueado

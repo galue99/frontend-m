@@ -310,7 +310,12 @@
 
     $scope.printReport = function(data, encuesta_id){
 
-      window.location.href = 'http://localhost:8000/api/printReport/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken();
+      window.open(
+        'http://api.mejorar-se.com.ve/api/printReport/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken(),
+        '_blank' // <- This is what makes it open in a new window.
+      );
+
+    //  window.location.href = 'http://api.mejorar-se.com.ve/api/printReport/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken(), '_blank';
 
   /*    ReportService.printReport(data.id, encuesta_id)
         .then(function(response){
@@ -328,7 +333,11 @@
 
     $scope.printReport1 = function(data, encuesta_id){
 
-      window.location.href = 'http://localhost:8000/api/printReport1/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken();
+      window.open(
+        'http://api.mejorar-se.com.ve/api/printReport1/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken(),
+        '_blank' // <- This is what makes it open in a new window.
+      );
+      //0window.location.href = 'http://api.mejorar-se.com.ve/api/printReport1/' + data.id +'/' + encuesta_id +'?token='+ $auth.getToken(), '_blank';
 
       /* ReportService.printReport1(data.id, encuesta_id)
          .then(function(response){

@@ -31,12 +31,12 @@
       rules: {
         username: {
           required: true,
-          minlength: 4,
+          minlength: 3,
           maxlength: 15
         },
         password: {
           required: true,
-          minlength: 4,
+          minlength: 3,
           maxlength: 15
         }
       },
