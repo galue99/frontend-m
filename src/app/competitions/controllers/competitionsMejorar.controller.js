@@ -22,7 +22,7 @@
 
       competition.company_id = company;
 
-      competitionsService.saveCompetitions(competition)
+      competitionsService.saveCompetitionsMejorar(competition)
         .then(function () {
           ngMessenger.displaySuccessMessage('Competencia Agregada con Exito');
         }, function () {

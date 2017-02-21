@@ -11,7 +11,7 @@
     .controller('PollsFinishController', PollsFinishController);
 
   /** @ngInject */
-  function PollsFinishController($scope, QuestionsService ) {
+  function PollsFinishController($scope, QuestionsService, companyService) {
 
     var vm = this;
     $scope.polls = {};
@@ -19,13 +19,28 @@
 
     $(".fakeloader").show();
 
-    QuestionsService.pollFinish()
-      .then(function(response){
-        $scope.polls = response.data;
-        $(".fakeloader").fadeOut();
-      }, function (err) {
 
-      });
+    vm.allCompanys = function(){
+      companyService.getCompany()
+        .then(function (response) {
+          $scope.companys = response;
+          $(".fakeloader").fadeOut();
+        }, function(error){
+          $(".fakeloader").fadeOut();
+        });
+    };
+
+    vm.allCompanys();
+
+    $scope.allPolls = function(company){
+      QuestionsService.pollFinish(company)
+        .then(function(response){
+          $scope.polls = response.data;
+          $(".fakeloader").fadeOut();
+        }, function (err) {
+
+        });
+    };
 
 
 

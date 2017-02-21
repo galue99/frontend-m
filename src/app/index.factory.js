@@ -337,11 +337,31 @@
           return defered.promise;
         },
         saveCompetitions: function(data) {
+          console.log(data);
           var defered = $q.defer();
           var token = window.localStorage.getItem('satellizer_token');
 
           return $http({
             url: SERVER +'api/competitions?token=' + token,
+            data: data,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8'
+            }
+          }).success(function (data) {
+            defered.resolve(data);
+          }, function (err) {
+            defered.reject(err);
+          });
+          return defered.promise;
+        },
+        saveCompetitionsMejorar: function(data) {
+          console.log(data);
+          var defered = $q.defer();
+          var token = window.localStorage.getItem('satellizer_token');
+
+          return $http({
+            url: SERVER +'api/competitionsSaveMejorar?token=' + token,
             data: data,
             method: 'POST',
             headers: {
@@ -470,7 +490,7 @@
         var defered = $q.defer();
         var token = window.localStorage.getItem('satellizer_token');
         return $http({
-          url: SERVER + 'api/competitionsBehaviorId/?token=' + token,
+          url: SERVER + 'api/competitionsBehaviorId?token=' + token,
           method: 'GET',
           timeout: 30000,
           headers: {
@@ -639,7 +659,7 @@
             url: SERVER + 'api/pollAnswerUser?token=' + token,
             method: 'POST',
             data: data,
-            timeout: 30000,
+            timeout: 300000,
             headers: {
               'Content-Type': 'application/json; charset=UTF-8'
             }
@@ -783,18 +803,18 @@
             });
           return defered.promise;
         },
-        pollFinish: function() {
+        pollFinish: function(id) {
           var defered = $q.defer();
           var token = window.localStorage.getItem('satellizer_token');
           return $http({
-            url: SERVER + 'api/pollFinish?token=' + token,
+            url: SERVER + 'api/pollFinish/' + id +'?token=' + token,
             method: 'get',
             timeout: 30000,
             headers: {
               'Content-Type': 'application/json; charset=UTF-8'
             }
           }).success(function(data) {
-            defered.resolve(data);
+              defered.resolve(data);
           })
             .error(function(error) {
               defered.reject(error);

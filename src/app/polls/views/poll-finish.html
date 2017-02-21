@@ -27,8 +27,12 @@
         <div class="grid-title">
           <h4>Lista de <span class="semi-bold">Preguntas y Respuestas</span></h4>
           <!--<button class="btn btn-primary pull-right" data-ng-click="createPoll()"  style="margin-right: 4px;" title="Debe seleccionar una empresa previamente"><i class="glyphicon glyphicon-th-list"></i> Crear Encuesta </button>-->
-
+          <div style="display: flex;">
+            <label for="">Seleccione una Empresa: </label>
+            <select ng-options="item.id as item.name for item in companys" name="company" class="form-control" data-ng-model="company" ng-change="allPolls(company)" style="width:100%" required></select>
+          </div>
         </div>
+
         <div class="grid-body" id="">
           <div class="table-responsive">
             <table datatable="ng" class="table table-hover table-condensed table-bordered" data-ng-cloak>

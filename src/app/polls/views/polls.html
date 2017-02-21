@@ -415,6 +415,7 @@
               <tr>
                 <th>Id</th>
                 <th>Nombre del Evaluador</th>
+                <th>Cargo</th>
                 <th>Acciones</th>
               </tr>
               </thead>
@@ -422,6 +423,7 @@
               <tr data-ng-repeat="user in usersNew">
                 <td>{{$index + 1}}</td>
                 <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>{{user.position}}</td>
                 <td>
                   <input name="{{user.firstname}}"
                          data-ng-model="check"
